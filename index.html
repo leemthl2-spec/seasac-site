@@ -1,191 +1,35 @@
 <!doctype html>
 <html lang="ko">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>쿡픽 | 메뉴만 고르세요, 재료부터 조리까지 한 번에</title>
-<meta name="description" content="SNS에서 본 메뉴의 재료 패키지와 QR 조리 안내를 연결하는 밀키트 앱.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="쿡픽 | 메뉴만 고르세요, 재료부터 조리까지 한 번에">
-<meta property="og:description" content="SNS에서 본 메뉴의 재료 패키지와 QR 조리 안내를 연결하는 밀키트 앱.">
-<meta property="og:image" content="https://leemthl2-spec.github.io/assets/og.png">
-<meta property="og:url" content="https://leemthl2-spec.github.io/">
-<link rel="canonical" href="https://leemthl2-spec.github.io/">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link rel="stylesheet" href="assets/base.css">
-<style>
-:root{--dk:#12201A;--dk2:#0C1611;--pt:#287052;--pt2:#3FA374;--ac:#D94732;--y:#F4C95D;--ink:#191F28;--sub:#6B7684;--gray:#F7F8FA;--line:#E5E8EB}
-body{font-family:"Pretendard Variable",Pretendard,system-ui,sans-serif;color:var(--ink);background:#fff;font-size:16px;line-height:1.6}
-.in{max-width:1072px;margin:0 auto}
-.eb{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--pt);letter-spacing:.06em;text-transform:uppercase}
-.eb:before{content:"";width:16px;height:2px;background:currentColor}
-.h2{font-size:40px;font-weight:700;letter-spacing:-.03em;line-height:1.3;margin:12px 0 10px}
-.lead{font-size:17px;color:var(--sub);margin:0}
-/* 헤더 */
-.nav{position:absolute;top:0;left:0;right:0;height:72px;display:flex;align-items:center;padding:0 120px;z-index:10;color:#fff}
-.nav .logo{font-size:22px;font-weight:700}
-.nav nav{margin-left:auto;display:flex;gap:30px;font-size:15px;font-weight:500;align-items:center}
-.nav nav .pill{background:rgba(195,255,220,.18);border-radius:100px;height:44px;padding:0 22px;display:flex;align-items:center;font-weight:600;font-size:14px}
-/* 히어로 */
-.hero{position:relative;height:900px;background:radial-gradient(ellipse at 30% 30%,#1E3A2C 0,var(--dk) 55%);color:#fff;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
-.hero:after{content:"";position:absolute;left:-5%;right:-5%;bottom:-120px;height:220px;background:var(--gray);border-radius:50% 50% 0 0/100% 100% 0 0}
-.hero .badge{background:rgba(63,163,116,.2);color:#BDEBD2;border-radius:100px;padding:6px 16px;font-size:13px;font-weight:600}
-.hero h1{font-size:52px;font-weight:700;line-height:1.3;letter-spacing:-.03em;margin:24px 0 18px}
-.hero h1 em{font-style:normal;color:var(--y)}
-.hero p{color:rgba(255,255,255,.7);font-size:16px;margin:0;max-width:520px}
-.hero .btns{display:flex;gap:12px;margin-top:36px}
-.hero .btns a{height:60px;padding:0 30px;border-radius:100px;display:flex;align-items:center;font-weight:600}
-.hero .btns a:first-child{background:var(--pt2);color:#fff}.hero .btns a:last-child{background:rgba(255,255,255,.08);color:rgba(255,255,255,.8)}
-/* 문제 */
-.pain{background:var(--gray);padding:60px 0 120px}
-.pain .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
-.pain .c{background:#fff;border-radius:16px;padding:28px;box-shadow:0 2px 12px rgba(0,0,0,.04)}
-.pain .c i{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:#E8F5EE;font-style:normal;font-size:22px}
-.pain .c b{display:block;font-size:19px;margin:18px 0 8px}.pain .c p{margin:0;font-size:15px;color:var(--sub)}
-/* 해결: 번갈아 */
-.sol{padding:120px 0 40px}
-.sol .hd2{text-align:center;margin-bottom:72px}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;margin-bottom:100px}
-.row.rev .pic{order:2}
-.row .pic{height:372px;border-radius:20px;overflow:hidden}.row .pic .ph{background:#EEF6F1}
-.row .tag{display:inline-block;border-radius:6px;font-size:12px;font-weight:700;padding:3px 10px;background:#E8F5EE;color:var(--pt)}
-.row h3{font-size:28px;font-weight:700;line-height:1.35;margin:14px 0 12px;letter-spacing:-.02em}
-.row p{font-size:16px;color:var(--sub);margin:0 0 18px}
-.row ul{list-style:none;padding:0;margin:0}.row li{font-size:15px;margin-bottom:8px}.row li:before{content:"✓";color:var(--pt);font-weight:700;margin-right:10px}
-/* 숫자 띠 */
-.stats{background:var(--dk);color:#fff;padding:90px 0}
-.stats .in{display:grid;grid-template-columns:repeat(4,1fr);text-align:center}
-.stats b{display:block;font-size:48px;font-weight:700}.stats small{color:rgba(255,255,255,.6);font-size:14px}
-/* 백과 = 메뉴 카드 */
-.ency{background:var(--gray);padding:100px 0}
-.ency .top{display:flex;justify-content:space-between;align-items:flex-end}
-.ency .top a{color:var(--pt);font-weight:600;font-size:15px}
-.ency .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
-.ency .c{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.05)}
-.ency .c .pic{height:170px;position:relative}
-.ency .c:nth-child(1) .pic .ph{background:#FFF1D6}.ency .c:nth-child(2) .pic .ph{background:#DDF3E6}.ency .c:nth-child(3) .pic .ph{background:#FFE2DC}
-.ency .c .pic em{position:absolute;left:14px;top:14px;background:#fff;border-radius:6px;font-style:normal;font-size:12px;font-weight:700;padding:2px 8px;z-index:2}
-.ency .c div.t{padding:22px}.ency .c b{font-size:17px}.ency .c p{font-size:14px;color:var(--sub);margin:6px 0 10px}.ency .c u{color:var(--pt);font-size:14px;font-weight:600;text-decoration:none}
-/* 단계 4카드 (팀 자리) */
-.team{padding:110px 0}
-.team .hd2{text-align:center}
-.team .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:48px}
-.team .c{background:var(--gray);border-radius:16px;padding:30px 20px;text-align:center}
-.team .c i{display:grid;place-items:center;width:64px;height:64px;border-radius:50%;margin:0 auto 14px;font-style:normal;font-size:28px;background:#DDF3E6}
-.team .c b{display:block;font-size:17px}.team .c small{color:var(--pt);font-weight:700;font-size:12px}.team .c p{font-size:14px;color:var(--sub);margin:8px 0 0}
-/* CTA */
-.cta{background:radial-gradient(ellipse at 50% 0,#1E3A2C,var(--dk) 65%);color:#fff;text-align:center;padding:100px 20px}
-.cta .eb{color:#8FD9B0}
-.cta .h2{color:#fff}.cta .lead{color:rgba(255,255,255,.65)}
-.cta form{max-width:480px;margin:36px auto 0;text-align:left}
-.field{display:block;margin-bottom:10px}
-.field span{display:block;font-size:13px;font-weight:600;margin-bottom:6px;color:rgba(255,255,255,.75)}
-.field input,.field select{width:100%;height:52px;border-radius:100px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.07);color:#fff;padding:0 22px;font:inherit;font-size:15px}
-.field input::placeholder{color:rgba(255,255,255,.4)}
-.cta .safe-note{margin:14px 0;border-radius:14px}
-.submit{width:100%;height:56px;border:0;border-radius:100px;background:var(--pt2);color:#fff;font-size:16px;font-weight:700}
-.ft{background:var(--dk2);color:rgba(255,255,255,.5);padding:60px 120px 40px;font-size:13px}
-.ft .cols{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px}
-.ft b{display:block;color:#fff;font-size:14px;margin-bottom:14px}.ft .logo{font-size:22px}
-.ft a{display:block;margin-bottom:8px}
-@media (max-width:1100px){.in{padding:0 20px}.nav{padding:0 20px}}
-@media (max-width:860px){
-  .nav nav a:not(.pill){display:none}.hero{height:720px;padding:0 20px}.hero h1{font-size:32px}.hero .btns{flex-direction:column;width:100%}.hero .btns a{justify-content:center}
-  .h2{font-size:28px}.pain .cards,.ency .cards{grid-template-columns:1fr}.row{grid-template-columns:1fr;gap:24px;margin-bottom:60px}.row.rev .pic{order:0}.row .pic{height:240px}
-  .stats .in{grid-template-columns:repeat(2,1fr);row-gap:30px}.team .cards{grid-template-columns:repeat(2,1fr)}.ft{padding:40px 20px}.ft .cols{grid-template-columns:1fr 1fr}
-}
-</style>
-<!-- GA4 (Day 34에 여기에 붙이기) -->
-<!-- Meta Pixel (Day 35에 여기에 붙이기) -->
-<!-- Microsoft Clarity (Day 38에 여기에 붙이기) -->
-<!-- Schema JSON-LD (Day 29) -->
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>쿡픽 | 오늘의 나에게 딱 맞는 한 끼</title>
+  <meta name="description" content="SNS에서 저장한 요리를 한 끼 재료와 QR 레시피로 만나는 쿡픽 사전예약 페이지입니다.">
+  <meta property="og:title" content="쿡픽 | 오늘의 나에게 딱 맞는 한 끼"><meta property="og:description" content="메뉴만 고르세요. 한 끼 준비는 쿡픽이."><meta property="og:image" content="https://leemthl2-spec.github.io/seasac-site/assets/images/hero.jpg"><meta property="og:url" content="https://leemthl2-spec.github.io/seasac-site/">
+  <link rel="canonical" href="https://leemthl2-spec.github.io/seasac-site/"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><link rel="stylesheet" href="base.css"><link rel="stylesheet" href="site.css">
 </head>
 <body>
-<header class="nav"><a class="logo" href="./">CookPick</a><nav><a href="#how">서비스 소개</a><a href="#menu">메뉴 미리보기</a><a href="#step">이용 방법</a><a class="pill" href="#apply" id="cta-top">사전 가입</a></nav></header>
-
-<main>
-<section class="hero">
-  <span class="badge">● 출시 예정 · SNS 메뉴 재료 패키지</span>
-  <h1>메뉴만 고르세요,<br><em>재료부터 조리까지 한 번에</em></h1>
-  <p>퇴근 후 SNS에서 본 그 요리. 메뉴별 재료 패키지와 QR 조리 안내로 장보기와 레시피 재검색을 줄여 드려요.</p>
-  <div class="btns"><a href="#apply" id="cta-main">사전 회원 가입 →</a><a href="#how">어떻게 오나요?</a></div>
-</section>
-
-<section class="pain"><div class="in">
-  <span class="eb">PAIN POINT</span>
-  <h2 class="h2">SNS 요리, 왜 따라 하기 어려울까?</h2>
-  <p class="lead">퇴근 후 저녁, 마음먹어도 따라 하기까지 걸리는 게 많아요.</p>
-  <div class="cards"><div class="c"><i>🧺</i><b>재료가 남아요</b><p>재료를 사러 가면 한 번 쓰고 남는 게 더 많아요</p></div><div class="c"><i>📱</i><b>레시피를 다시 찾아요</b><p>레시피를 다시 찾느라 영상을 몇 번씩 돌려 봐요</p></div><div class="c"><i>😮‍💨</i><b>장보기부터 지쳐요</b><p>퇴근 후엔 장보기부터 지쳐요</p></div></div>
-</div></section>
-
-<section class="sol in" id="how">
-  <div class="hd2"><span class="eb">SOLUTION</span><h2 class="h2">쿡픽이 다 챙겼습니다</h2><p class="lead">요리 입문자도 오늘은 집밥 셰프</p></div>
-  <div class="row ">
-    <div class="pic"><div class="ph "><span><span class="todo">Day16 앱 화면 4종 중 1장</span></span></div></div>
-    <div><span class="tag">PICK IT</span><h3>메뉴 고르기</h3><p>SNS에서 본 메뉴를 앱에서 바로 고릅니다.</p>
-      <ul><li>고르기: 오늘 먹고 싶은 메뉴를 고릅니다.</li></ul></div>
-  </div>
-  <div class="row rev">
-    <div class="pic"><div class="ph "><span><span class="todo">QR 조리 안내 화면</span></span></div></div>
-    <div><span class="tag">GET IT</span><h3>딱 맞는 재료<br><span style="font-weight:600;font-size:22px">패키지 QR 한 번이면 조리 순서가 열려요</span></h3><p>한 끼 분량 재료만 패키지로 받습니다. 영상을 되감지 않아도 단계별로 따라 하면 됩니다.</p>
-      <ul><li>받기: 메뉴에 맞춘 재료와 소스를 함께 준비해요.</li></ul></div>
-  </div>
-  <div class="row ">
-    <div class="pic"><div class="ph "><span><span class="todo">패키지 컷</span></span></div></div>
-    <div><span class="tag">COOK IT</span><h3>QR 조리 안내<br><span style="font-weight:600;font-size:22px">한 끼에 딱 맞는 재료만</span></h3><p>패키지 QR을 찍으면 단계별 조리법이 열립니다. 처음부터 끝까지 차근차근 따라갈 수 있어요.</p>
-      <ul><li>QR로 요리: QR 안내를 따라 완성합니다.</li></ul></div>
-  </div>
-</section>
-
-<section class="stats"><div class="in">
-  <div><b>3+</b><small>준비 중인 SNS 메뉴</small></div><div><b>1끼</b><small>딱 맞는 재료 패키지</small></div><div><b>QR</b><small>단계별 조리 안내</small></div><div><b>3단계</b><small>고르기 · 받기 · 요리</small></div>
-</div></section>
-
-<section class="ency" id="menu"><div class="in">
-  <div class="top"><div><span class="eb">MENU PREVIEW</span><h2 class="h2">이번 주 SNS 인기 메뉴</h2><p class="lead">오픈하면 바로 주문할 수 있는 메뉴를 미리 보여 드려요.</p></div><a href="#apply">전체 보기 →</a></div>
-  <div class="cards"><a class="c" href="#apply"><div class="pic"><em>15분</em><div class="ph "><span><span class="todo">메뉴 완성 사진</span></span></div></div><div class="t"><b>토마토 버터 파스타</b><p>상큼한 토마토와 버터의 가장 사랑받는 조합</p><u>자세히 보기 →</u></div></a><a class="c" href="#apply"><div class="pic"><em>한 그릇</em><div class="ph "><span><span class="todo">메뉴 완성 사진</span></span></div></div><div class="t"><b>갈릭 스테이크 덮밥</b><p>촉촉한 스테이크와 마늘의 풍미 가득한 한 그릇</p><u>자세히 보기 →</u></div></a><a class="c" href="#apply"><div class="pic"><em>2인분</em><div class="ph "><span><span class="todo">메뉴 완성 사진</span></span></div></div><div class="t"><b>버섯 크림 리조또</b><p>부드러운 크림과 깊은 버섯 향의 근사한 한 끼</p><u>자세히 보기 →</u></div></a></div>
-</div></section>
-
-<section class="team in" id="step">
-  <div class="hd2"><span class="eb">HOW IT WORKS</span><h2 class="h2">퇴근 후 저녁까지</h2><p class="lead">퇴근길에 고르고, 저녁에 완성해요.</p></div>
-  <div class="cards"><div class="c"><i>📲</i><small>STEP 1</small><b>고르기</b><p>오늘 먹고 싶은 메뉴를 고릅니다.</p></div><div class="c"><i>📦</i><small>STEP 2</small><b>받기</b><p>메뉴에 맞춘 재료와 소스를 함께 준비해요.</p></div><div class="c"><i>🍳</i><small>STEP 3</small><b>QR로 요리</b><p>QR 안내를 따라 완성합니다.</p></div><div class="c"><i>🍽</i><small>STEP 4</small><b>오늘은 집밥 셰프</b><p>남는 재료 없이 한 끼 완성.</p></div></div>
-</section>
-
-<section class="cta" id="apply">
-  <span class="eb">PRE-REGISTER</span>
-  <h2 class="h2">쿡픽과 함께<br>오늘 저녁을 시작하세요</h2>
-  <p class="lead">사전 회원으로 가입하시면 오픈 소식과 첫 주문 혜택을 보내 드립니다.</p>
-  <form id="lead-form" action="result.html" method="get" autocomplete="off" novalidate>
-    <label class="field"><span>이름</span><input id="f-name" type="text" required maxlength="20" placeholder="홍길동"></label>
-<label class="field"><span>연락처</span><input id="f-contact" type="tel" required pattern="[0-9\- ]{9,14}" placeholder="010-0000-0000"></label>
-
-    <div class="safe-note"><span aria-hidden="true">🔒</span><div>입력한 정보는 <b>어디에도 전송·저장되지 않고</b> 완료 즉시 지워집니다. <button type="button" data-privacy-open>자세히 보기</button></div></div>
-    <button class="submit" type="submit" id="cta-submit">사전 회원 가입</button>
-  </form>
-</section>
+<header class="site-header"><a class="brand" href="#top" aria-label="CookPick 홈"><span>cook</span>pick<i>●</i></a><nav aria-label="주요 메뉴"><a href="#about">서비스 소개</a><a href="#menu">메뉴 미리보기</a><a href="#steps">이용 방법</a></nav><a class="nav-cta" href="#apply">사전예약</a></header>
+<main id="top">
+  <section class="hero" aria-label="쿡픽 사전예약"><img src="assets/images/hero.jpg" alt="따뜻한 주방에서 페타치즈 토마토 파스타와 쿡픽 패키지를 소개하는 배너" width="1942" height="809" fetchpriority="high"><a class="hero-link" href="#apply" aria-label="사전예약하고 30% 혜택 받기"></a></section>
+  <section class="question section" id="about"><div class="section-inner"><p class="eyebrow">THE QUESTION</p><h1>먹고 싶은 건 정했는데,<br><em>준비할 게 너무 많으니까.</em></h1><div class="problem-grid">
+    <article><span class="line-icon">♧</span><h2>한 번 쓰고 남는 재료</h2><p>요리하고 남은 재료는<br>늘 냉장고 속에.</p></article><article><span class="line-icon">▤</span><h2>다시 찾는 레시피</h2><p>SNS에서 봤던 레시피를<br>또 찾아야 하고.</p></article><article><span class="line-icon">♧</span><h2>퇴근 후 장보기 부담</h2><p>먹고 싶은데,<br>장보는 게 더 일이에요.</p></article>
+  </div></div></section>
+  <section class="solution"><h2 class="solution-title">메뉴만 고르세요. <em>한 끼 준비는 쿡픽이.</em></h2>
+    <article class="feature"><figure><img src="assets/images/pick-it.jpg" alt="쿡픽 앱에서 오늘의 메뉴를 선택하는 화면" width="2200" height="1100" loading="lazy"></figure><div class="feature-copy"><p class="eyebrow">01 · PICK IT</p><h3>저장만 해둔 그 요리,<br><em>오늘의 한 끼로.</em></h3><p>먹고 싶은 메뉴를 쿡픽에서 골라보세요.</p></div></article>
+    <article class="feature reverse"><figure><img src="assets/images/get-it.jpg" alt="파스타 재료와 소스가 한 끼 분량으로 담긴 쿡픽 패키지" width="2200" height="1100" loading="lazy"></figure><div class="feature-copy"><p class="eyebrow">02 · GET IT</p><h3>한 끼에 필요한 재료,<br><em>하나의 패키지에.</em></h3><p>메뉴에 맞춘 재료와 소스를 함께 준비해요.</p></div></article>
+    <article class="feature"><figure><img src="assets/images/cook-it.jpg" alt="스마트폰 QR 조리 영상과 쿡픽 패키지" width="2200" height="1100" loading="lazy"></figure><div class="feature-copy"><p class="eyebrow">03 · COOK IT</p><h3>영상 되감기 대신,<br><em>QR 한 번이면 충분해요.</em></h3><p>패키지 QR을 찍고, 조리 순서를 한 단계씩 따라가세요.</p></div></article>
+  </section>
+  <section class="benefits" aria-label="쿡픽의 핵심 혜택"><div class="benefit-grid"><article><span>♜</span><h3>내 취향</h3><b>메뉴 선택</b><p>다양한 메뉴 중<br>오늘의 한 끼를 골라요.</p></article><article><span>◇</span><h3>한 끼</h3><b>재료 패키지</b><p>메뉴에 맞춘 신선한 재료와<br>소스를 한 번에.</p></article><article><span>▷</span><h3>QR</h3><b>단계별 안내</b><p>QR을 찍고<br>조리 순서를 따라가요.</p></article><article><span>♢</span><h3>30%</h3><b>사전예약 기획 혜택</b><p>오픈 후 7일간<br>특별한 혜택을 만나보세요.</p></article></div></section>
+  <section class="menu-section section" id="menu"><div class="section-inner"><h2>어떤 저녁이 기다려지나요?</h2><p class="menu-kicker">출시 예정 메뉴 콘셉트</p><div class="menu-grid">
+    <button class="food-card" type="button" data-taste="달콤한 구운 토마토와 고소한 페타치즈"><span class="food-image"><img src="assets/images/feta-tomato-pasta.jpg" alt="페타치즈와 구운 방울토마토를 올린 파스타" width="1774" height="887" loading="lazy"></span><span class="food-copy"><strong>페타치즈 토마토 파스타</strong><small>구운 토마토의 달콤함과 페타치즈의 고소함이 어우러진 산뜻한 한 접시</small><span>이 메뉴가 기대돼요 ○</span></span></button>
+    <button class="food-card" type="button" data-taste="육즙 가득한 스테이크와 바삭한 갈릭"><span class="food-image"><img src="assets/images/garlic-steak-rice.jpg" alt="갈릭칩을 올린 스테이크 덮밥" width="1774" height="887" loading="lazy"></span><span class="food-copy"><strong>갈릭 스테이크 덮밥</strong><small>촉촉한 스테이크와 마늘의 풍미가 가득한 든든한 한 그릇</small><span>이 메뉴가 기대돼요 ○</span></span></button>
+    <button class="food-card" type="button" data-taste="부드러운 크림과 깊고 진한 버섯 향"><span class="food-image"><img src="assets/images/mushroom-risotto.jpg" alt="구운 버섯과 치즈를 올린 크림 리조또" width="1774" height="887" loading="lazy"></span><span class="food-copy"><strong>버섯 크림 리조또</strong><small>부드러운 크림과 깊은 버섯 향이 어우러진 근사한 한 끼</small><span>이 메뉴가 기대돼요 ○</span></span></button>
+  </div></div></section>
+  <section class="steps section" id="steps"><div class="section-inner"><h2>준비는 가볍게, 내 저녁은 <em>여유롭게.</em></h2><div class="step-grid"><article><i>🛒</i><small>01</small><h3>메뉴 고르기</h3><p>먹고 싶은 메뉴를 선택하세요.</p></article><article><i>◇</i><small>02</small><h3>재료 만나기</h3><p>메뉴에 맞춘 재료와 소스를 준비해요.</p></article><article><i>▶</i><small>03</small><h3>QR로 요리하기</h3><p>패키지의 QR을 찍고 조리 순서를 따라해요.</p></article><article><i>♜</i><small>04</small><h3>한 끼 즐기기</h3><p>맛있는 한 끼, 여유로운 저녁을 즐겨요.</p></article></div></div></section>
+  <section class="apply" id="apply"><div class="apply-inner"><p class="eyebrow">PRE-REGISTER</p><h2>쿡픽의 첫 식탁,<br><em>가장 먼저 초대할게요.</em></h2><p>오픈 소식과 첫 한 끼 혜택을 먼저 만나보세요.</p><div class="coupon"><strong>30<small>% OFF</small></strong><span>오픈 후 7일간 · 기획 혜택</span></div><form id="lead-form" action="result.html" method="get" autocomplete="off" novalidate><label><span>이름</span><input id="f-name" type="text" required maxlength="20" placeholder="이름을 입력해주세요"></label><label><span>연락처</span><input id="f-contact" type="tel" required pattern="[0-9\- ]{9,14}" placeholder="연락처를 입력해주세요"></label><button class="privacy-check" type="button" data-privacy-open>□ 가상 브랜드 체험임을 확인했어요.</button><button class="submit" type="submit">30% 할인 코드 체험하기 →</button></form><p class="disclaimer">실제 결제는 없으며, 입력값은 저장되지 않습니다.</p></div></section>
 </main>
-
-<footer class="ft"><div class="cols">
-  <div><b class="logo">CookPick</b>이 페이지는 수업 실습용 페이지입니다. 실제 판매·결제는 이루어지지 않으며, 표기된 수치·후기는 예시입니다.</div>
-  <div><b>서비스</b><a href="#how">서비스 소개</a><a href="#menu">메뉴 미리보기</a></div>
-  <div><b>팔로우</b><a href="#">Instagram</a></div>
-  <div><b>약관</b><a href="#" data-privacy-open>개인정보 처리 안내</a></div>
-</div></footer>
-<div class="modal" id="privacy-modal" role="dialog" aria-modal="true" aria-labelledby="privacy-title" aria-hidden="true">
-  <div class="modal-box">
-    <span class="badge">개인정보 미수집 · 즉시 파기</span>
-    <h2 id="privacy-title">개인정보 처리 안내</h2>
-    <ol>
-      <li><strong>입력하신 정보는 절대 저장하지 않습니다.</strong> 서버, 데이터베이스, 스프레드시트, 이메일, 외부 서비스 어디로도 전송되지 않습니다.</li>
-      <li>입력값은 이 브라우저 화면에만 잠시 머물며, 완료 버튼을 누르는 <strong>즉시 화면에서 지워집니다.</strong> 쿠키나 브라우저 저장소에도 남기지 않습니다.</li>
-      <li>페이지 제작자와 강사를 포함한 <strong>누구도 입력값을 볼 수 없습니다.</strong></li>
-    </ol>
-    <label><input type="checkbox" id="privacy-agree"> 위 내용을 확인했으며, 입력값이 저장되지 않고 즉시 파기된다는 점에 동의합니다.</label>
-    <div class="modal-actions">
-      <button type="button" class="cancel" id="privacy-cancel">닫기</button>
-      <button type="button" class="ok" id="privacy-ok" disabled>확인했습니다</button>
-    </div>
-  </div>
-</div><script src="assets/privacy.js"></script>
-</body>
-</html>
+<footer><a class="brand" href="#top"><span>cook</span>pick<i>●</i></a><nav><a href="#about">서비스 소개</a><a href="#menu">메뉴 미리보기</a><a href="#steps">이용 방법</a></nav><p>가상 브랜드 콘셉트로 실제 예약·결제·쿠폰 발급은 진행되지 않습니다.</p></footer>
+<div class="taste-toast" role="status" aria-live="polite"></div><div class="fork-cursor" aria-hidden="true">🍴</div>
+<div class="modal" id="privacy-modal" role="dialog" aria-modal="true" aria-labelledby="privacy-title" aria-hidden="true"><div class="modal-box"><span class="badge">개인정보 미수집 · 즉시 파기</span><h2 id="privacy-title">개인정보 처리 안내</h2><ol><li><strong>입력하신 정보는 저장하지 않습니다.</strong> 서버, 데이터베이스, 이메일 또는 외부 서비스로 전송되지 않습니다.</li><li>입력값은 이 브라우저에만 잠시 머물며 완료 시 즉시 지워집니다.</li><li>이 페이지는 가상 브랜드 체험용이며 실제 예약이나 쿠폰 발급은 이루어지지 않습니다.</li></ol><label><input type="checkbox" id="privacy-agree"> 위 내용을 확인했습니다.</label><div class="modal-actions"><button type="button" class="cancel" id="privacy-cancel">닫기</button><button type="button" class="ok" id="privacy-ok" disabled>확인했습니다</button></div></div></div>
+<script src="privacy.js"></script><script src="interactions.js"></script>
+</body></html>

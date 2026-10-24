@@ -6,4 +6,4 @@ Disallow: /result.html
 # User-agent: GPTBot
 # Allow: /
 
-Sitemap: https://leemthl2-spec.github.io/sitemap.xml
+Sitemap: https://leemthl2-spec.github.io/seasac-site/sitemap.xml
