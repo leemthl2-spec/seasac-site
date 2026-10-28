@@ -32,21 +32,32 @@
     agree.focus();
   }
 
-  function close() {
+  function close(method) {
+    if (mode === 'submit' && method) {
+      document.dispatchEvent(new CustomEvent('cookpick:form-abandon', { detail: { close_method: method } }));
+    }
     modal.classList.remove('open');
     modal.setAttribute('aria-hidden', 'true');
   }
 
   agree.addEventListener('change', function () { ok.disabled = !agree.checked; });
-  cancel.addEventListener('click', close);
-  modal.addEventListener('click', function (e) { if (e.target === modal) close(); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+  cancel.addEventListener('click', function () { close('button'); });
+  modal.addEventListener('click', function (e) { if (e.target === modal) close('backdrop'); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close('escape'); });
 
   ok.addEventListener('click', function () {
-    if (mode !== 'submit') { close(); return; }
+    if (mode !== 'submit') {
+      document.dispatchEvent(new CustomEvent('cookpick:privacy-confirm'));
+      close();
+      return;
+    }
     wipe();
-    // 분석 도구를 붙였다면 여기서 개인정보 없이 이벤트 이름만 보냅니다 (Day 34~35).
-    if (typeof window.gtag === 'function') window.gtag('event', 'generate_lead');
+    // 이름·연락처 값은 보내지 않고 신청 완료 사실만 측정합니다.
+    if (typeof window.gtag === 'function') window.gtag('event', 'generate_lead', {
+      lead_source: 'website_pre_register',
+      form_id: 'lead-form',
+      form_name: '사전예약'
+    });
     if (typeof window.fbq === 'function') window.fbq('track', 'Lead');
     location.replace('result.html');
   });
