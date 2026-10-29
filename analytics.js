@@ -2,6 +2,31 @@
 (function () {
   function track(name, params) {
     if (typeof window.gtag === 'function') window.gtag('event', name, params || {});
+    sendMetaEvent(name, params || {});
+  }
+
+  function sendMetaEvent(name, params) {
+    if (name === 'page_view' || name === 'scroll' || name.indexOf('scroll_') === 0) return;
+
+    var standardEvents = {
+      generate_lead: 'Lead',
+      sign_up: 'CompleteRegistration',
+      contact_click: 'Contact',
+      view_item: 'ViewContent',
+      add_to_cart: 'AddToCart',
+      begin_checkout: 'InitiateCheckout',
+      search: 'Search'
+    };
+
+    if (name === 'purchase') {
+      if (window.fbq) fbq('track', 'Purchase', { value: params.value, currency: 'KRW' });
+      return;
+    }
+    if (standardEvents[name]) {
+      if (window.fbq) fbq('track', standardEvents[name]);
+      return;
+    }
+    if (window.fbq) fbq('trackCustom', name);
   }
 
   function text(el) {
