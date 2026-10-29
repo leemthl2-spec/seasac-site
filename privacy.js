@@ -58,7 +58,7 @@
       form_id: 'lead-form',
       form_name: '사전예약'
     });
-    if (typeof window.fbq === 'function') window.fbq('track', 'Lead');
+    if (window.fbq) fbq('track', 'Lead');
     location.replace('result.html');
   });
 
