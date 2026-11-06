@@ -13,6 +13,7 @@
   var cancel = document.getElementById('privacy-cancel');
   var experience = document.getElementById('experience-confirm');
   var mode = 'info';
+  var completing = false;
 
   function wipe() {
     if (!form) return;
@@ -47,20 +48,33 @@
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close('escape'); });
 
   ok.addEventListener('click', function () {
+    if (completing) return;
     if (mode !== 'submit') {
       document.dispatchEvent(new CustomEvent('cookpick:privacy-confirm'));
       close();
       return;
     }
+    completing = true;
     wipe();
+    ok.disabled = true;
+    var navigated = false;
+    var fallback = setTimeout(showResult, 1500);
+    function showResult() {
+      if (navigated) return;
+      navigated = true;
+      clearTimeout(fallback);
+      location.replace('result.html');
+    }
     // 이름·연락처 값은 보내지 않고 신청 완료 사실만 측정합니다.
     if (typeof window.gtag === 'function') window.gtag('event', 'generate_lead', {
       lead_source: 'website_pre_register',
       form_id: 'lead-form',
-      form_name: '사전예약'
+      form_name: '사전예약',
+      event_callback: showResult,
+      event_timeout: 1500
     });
     if (window.fbq) fbq('track', 'Lead');
-    location.replace('result.html');
+    if (typeof window.gtag !== 'function') showResult();
   });
 
   document.querySelectorAll('[data-privacy-open]').forEach(function (b) {
@@ -70,6 +84,7 @@
   if (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      if (completing) return;
       if (!form.checkValidity()) { form.reportValidity(); return; }
       if (experience && experience.checked) {
         mode = 'submit';
