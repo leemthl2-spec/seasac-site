@@ -1,0 +1,21 @@
+.cook-hero{height:auto;min-height:480px;padding:64px clamp(22px,8vw,140px);display:grid;align-items:center;color:#fff;background:linear-gradient(90deg,#21150ef5 15%,#21150e80 60%,#21150e15),url('assets/images/feta-tomato-pasta.jpg') center right/cover}
+.hero-copy{max-width:520px}
+.hero-copy h1{font-size:clamp(36px,5vw,66px);line-height:1.15;margin:.3em 0}
+.hero-copy details{margin-top:14px}
+.hero-copy summary{cursor:pointer;width:fit-content;border:1px solid #fff;padding:10px 18px;border-radius:30px}
+.experience-cta{display:inline-block;background:#b83024;color:#fff;padding:12px 20px;border-radius:28px;font-weight:800}
+.experience-cta:hover{background:#98281e}
+.experience-cta:focus-visible,.hero-copy summary:focus-visible{outline:3px solid #e8c675;outline-offset:4px}
+#apply{scroll-margin-top:76px}
+.mid-cta{text-align:center;padding:0 18px}
+.recipe-group .food-card{width:100%}
+.recipe-panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;margin-top:10px}
+.recipe-panel h3{margin-top:0}
+.apply .privacy-check{min-height:44px;font-size:14px;display:flex;align-items:center;justify-content:center;gap:8px}
+.apply #experience-confirm{width:18px;height:18px;accent-color:var(--green2)}
+.coupon{max-width:100%}
+.apply .disclaimer{color:#fff}
+.question h2:first-of-type{font-size:clamp(30px,4vw,54px);line-height:1.25}
+.question .problem-grid h2:first-of-type{font-size:20px}
+.question h2 em{color:var(--green);font-style:normal}
+@media(max-width:850px){.cook-hero{min-height:390px;padding:42px 22px;background-position:65% center}.title-line{white-space:normal}}
