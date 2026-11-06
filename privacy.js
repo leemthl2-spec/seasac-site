@@ -11,6 +11,7 @@
   var agree = document.getElementById('privacy-agree');
   var ok = document.getElementById('privacy-ok');
   var cancel = document.getElementById('privacy-cancel');
+  var experience = document.getElementById('experience-confirm');
   var mode = 'info';
 
   function wipe() {
@@ -70,6 +71,12 @@
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (!form.checkValidity()) { form.reportValidity(); return; }
+      if (experience && experience.checked) {
+        mode = 'submit';
+        ok.disabled = false;
+        ok.click();
+        return;
+      }
       open('submit');
     });
   }

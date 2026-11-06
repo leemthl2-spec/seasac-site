@@ -56,7 +56,16 @@
     });
   });
 
-  var heroLink = document.querySelector('.hero-link');
+  document.querySelectorAll('[data-cta]').forEach(function (link) {
+    link.addEventListener('click', function () {
+      track('cta_click', {
+        cta_name: 'pre_register', cta_text: text(link),
+        cta_location: link.dataset.cta, destination_section: 'apply'
+      });
+    });
+  });
+
+  var heroLink = document.querySelector('[data-cta="hero"]');
   if (heroLink) heroLink.addEventListener('click', function () {
     track('select_promotion', {
       promotion_id: 'pre_register_30',
