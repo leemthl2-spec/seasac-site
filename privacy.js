@@ -66,6 +66,7 @@
       location.replace('result.html');
     }
     // 이름·연락처 값은 보내지 않고 신청 완료 사실만 측정합니다.
+    if (window.sendLeadLog) window.sendLeadLog();
     if (typeof window.gtag === 'function') window.gtag('event', 'generate_lead', {
       lead_source: 'website_pre_register',
       form_id: 'lead-form',
